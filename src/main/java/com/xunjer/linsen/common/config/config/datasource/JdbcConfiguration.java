@@ -1,7 +1,8 @@
-package com.xunjer.linsen.common.config;
+package com.xunjer.linsen.common.config.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
  * @date 2020/3/16 19:17
  * @tips 明日复明日 明日何其多
  */
+@Configuration
 public class JdbcConfiguration {
 
     /**
