@@ -2,6 +2,7 @@ package com.xunjer.linsen.service;
 
 import com.xunjer.linsen.common.config.model.ResultModel;
 import com.xunjer.linsen.model.EventInfo;
+import org.springframework.data.domain.Page;
 
 /**
  * @author linsen
@@ -11,4 +12,10 @@ import com.xunjer.linsen.model.EventInfo;
 public interface IEventInfoService {
 
     ResultModel<EventInfo> find(Integer eventId);
+
+    ResultModel<Page<EventInfo>> findEventInfo(Integer eventId,Integer tagId,Integer status,Integer result,String keyword);
+
+    ResultModel<Boolean> addEventInfo(EventInfo entity);
+
+    ResultModel<Boolean> deleteEventInfo(Integer eventId);
 }

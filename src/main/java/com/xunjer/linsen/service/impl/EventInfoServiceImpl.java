@@ -20,6 +20,6 @@ public class EventInfoServiceImpl implements IEventInfoService  {
 
     @Override
     public ResultModel<EventInfo> find(Integer eventId) {
-        return new ResultModel<>(eventInfoDao.find(eventId));
+        return new ResultModel<>(eventInfoDao.selectSingle(eventId));
     }
 }
