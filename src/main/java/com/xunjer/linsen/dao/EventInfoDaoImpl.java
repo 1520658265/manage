@@ -1,5 +1,6 @@
 package com.xunjer.linsen.dao;
 
+import com.xunjer.linsen.common.config.config.BaseDao.AbstractBaseDao;
 import com.xunjer.linsen.common.config.config.BaseDao.BaseDao;
 import com.xunjer.linsen.model.EventInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,14 @@ import org.springframework.stereotype.Repository;
  * @tips 明日复明日 明日何其多
  */
 @Repository
-public class EventInfoDaoImpl extends BaseDao<EventInfo> {
+public class EventInfoDaoImpl extends AbstractBaseDao<EventInfo> {
 
     @Autowired
     @Qualifier("jdbc_param_picture_book")
     private NamedParameterJdbcTemplate jdbcTemplate;
+
+    @Override
+    protected NamedParameterJdbcTemplate getJdbcTemplate() {
+        return this.jdbcTemplate;
+    }
 }

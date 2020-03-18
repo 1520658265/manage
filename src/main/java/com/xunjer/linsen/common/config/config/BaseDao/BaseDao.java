@@ -10,6 +10,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,10 +35,12 @@ public abstract class BaseDao<T> {
 
     private List<String> filedNameList;
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+//    private NamedParameterJdbcTemplate jdbcTemplate;
 
     public BaseDao(){
-        t = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];;
+        Type superClass = getClass().getGenericSuperclass();
+        Type[] actualTypes = ((ParameterizedType) superClass).getActualTypeArguments();
+        this.t = (Class<T>) actualTypes[0];
         fieldList = Arrays.asList(this.t.getDeclaredFields());
         Annotation tableNameAnnotation = t.getAnnotation(TableName.class);
         Annotation[] list = t.getAnnotations();
@@ -48,12 +51,13 @@ public abstract class BaseDao<T> {
             tableName = ((TableName) tableNameAnnotation).name();
         }
         Field[] fields = t.getDeclaredFields();
+        List<Field> list1 = new ArrayList<>(fields.length);
         for(Field field : fields){
             Annotation fieldNameAnnotation = field.getAnnotation(FieldName.class);
             if(fieldNameAnnotation==null){
                 throw new RuntimeException("缺少FieldName注解");
             }
-            fieldList.add(field);
+            list1.add(field);
             FieldName fieldName = (FieldName) fieldNameAnnotation;
             filedNameList.add(fieldName.value());
             if(fieldName.primary()){
@@ -61,6 +65,7 @@ public abstract class BaseDao<T> {
                 primaryName = fieldName.value();
             }
         }
+        this.fieldList = list1;
     }
 
     public T find(Integer primary){
@@ -74,12 +79,18 @@ public abstract class BaseDao<T> {
         select.append(" =:"+primary);
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue(primaryName,primary);
-        List<T> list = jdbcTemplate.query(select.toString(),parameterSource,new BeanPropertyRowMapper<>(t));
+        List<T> list = getJdbcTemplate().query(select.toString(),parameterSource,new BeanPropertyRowMapper<>(t));
         if(list.size()>0){
             return list.get(0);
         }else{
             return null;
         }
     }
+
+
+    /**
+     * 供子类实现,以便实现不同数据库间代码通用
+     */
+    protected abstract NamedParameterJdbcTemplate getJdbcTemplate();
 
 }

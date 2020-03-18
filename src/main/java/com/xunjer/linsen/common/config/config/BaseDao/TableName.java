@@ -1,7 +1,6 @@
 package com.xunjer.linsen.common.config.config.BaseDao;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @author linsen
@@ -9,6 +8,8 @@ import java.lang.annotation.Target;
  * @tips 明日复明日 明日何其多
  */
 @Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface TableName {
     String name();
 }
