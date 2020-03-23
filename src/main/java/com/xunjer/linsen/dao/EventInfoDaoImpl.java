@@ -2,11 +2,18 @@ package com.xunjer.linsen.dao;
 
 import com.xunjer.linsen.common.config.config.BaseDao.AbstractBaseDao;
 import com.xunjer.linsen.common.config.config.BaseDao.BaseDao;
+import com.xunjer.linsen.common.config.model.PageInfo;
+import com.xunjer.linsen.common.config.model.PageList;
 import com.xunjer.linsen.model.EventInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author linsen
@@ -19,6 +26,41 @@ public class EventInfoDaoImpl extends AbstractBaseDao<EventInfo> {
     @Autowired
     @Qualifier("jdbc_param_picture_book")
     private NamedParameterJdbcTemplate jdbcTemplate;
+
+    public PageList<EventInfo> select(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo){
+        String select = " select * from event_info";
+        String countSql = " select count(1) from event_info";
+        String whereStr = " where 1=1";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        if(tagId!=null){
+            whereStr += " and tagId=:tagId";
+            params.addValue("tagId",tagId);
+        }
+        if(StringUtils.isNotEmpty(title)){
+            whereStr += " and title like :title";
+            params.addValue("title","%"+title+"%");
+        }
+        if(StringUtils.isNotEmpty(beginDate)){
+            whereStr += " and eventDate between :beginDate and :endDate ";
+            params.addValue("beginDate",beginDate);
+            params.addValue("endDate",endDate);
+        }
+        if(owner!=null){
+            whereStr += " and owner=:owner";
+            params.addValue("owner",owner);
+        }
+        if(tagId!=null){
+            whereStr += " and tagId=:tagId";
+            params.addValue("encryption",encryption);
+        }
+        countSql += whereStr;
+        Long total = jdbcTemplate.queryForObject(countSql,params,Long.class);
+        List<EventInfo> list = jdbcTemplate.query(select,params,new BeanPropertyRowMapper<>(EventInfo.class));
+        PageList<EventInfo> result = new PageList<>();
+        result.setTotal(total);
+        result.setList(list);
+        return result;
+    }
 
     @Override
     protected NamedParameterJdbcTemplate getJdbcTemplate() {

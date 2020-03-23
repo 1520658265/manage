@@ -1,5 +1,6 @@
 package com.xunjer.linsen.common.config.config;
 
+import com.xunjer.linsen.common.config.dictionary.Dictionary;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -43,15 +44,6 @@ public class SwaggerConfig{
                 .build();
     }
 
-//    /**
-//     * @Description 静态资源路径
-//     */
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("swagger-ui.html")
-//                .addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-//        super.addResourceHandlers(registry);
-//    }
+
+
 }

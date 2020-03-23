@@ -1,5 +1,7 @@
 package com.xunjer.linsen.service.impl;
 
+import com.xunjer.linsen.common.config.model.PageInfo;
+import com.xunjer.linsen.common.config.model.PageList;
 import com.xunjer.linsen.common.config.model.ResultModel;
 import com.xunjer.linsen.dao.EventInfoDaoImpl;
 import com.xunjer.linsen.model.EventInfo;
@@ -19,7 +21,17 @@ public class EventInfoServiceImpl implements IEventInfoService  {
     private EventInfoDaoImpl eventInfoDao;
 
     @Override
-    public ResultModel<EventInfo> find(Integer eventId) {
-        return new ResultModel<>(eventInfoDao.selectSingle(eventId));
+    public ResultModel<PageList<EventInfo>> findEventInfo(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo) {
+        return new ResultModel<>(eventInfoDao.select(tagId,title,beginDate,endDate,owner,encryption,pageInfo));
+    }
+
+    @Override
+    public ResultModel<Boolean> addEventInfo(EventInfo entity) {
+        return new ResultModel<>(eventInfoDao.insertSingle(entity)>0);
+    }
+
+    @Override
+    public ResultModel<Boolean> deleteEventInfo(Integer eventId) {
+        return new ResultModel<>(eventInfoDao.deleteSingle(eventId));
     }
 }

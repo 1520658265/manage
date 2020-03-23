@@ -1,8 +1,9 @@
 package com.xunjer.linsen.service;
 
+import com.xunjer.linsen.common.config.model.PageInfo;
+import com.xunjer.linsen.common.config.model.PageList;
 import com.xunjer.linsen.common.config.model.ResultModel;
 import com.xunjer.linsen.model.EventInfo;
-import org.springframework.data.domain.Page;
 
 /**
  * @author linsen
@@ -11,9 +12,7 @@ import org.springframework.data.domain.Page;
  */
 public interface IEventInfoService {
 
-    ResultModel<EventInfo> find(Integer eventId);
-
-    ResultModel<Page<EventInfo>> findEventInfo(Integer eventId,Integer tagId,Integer status,Integer result,String keyword);
+    ResultModel<PageList<EventInfo>> findEventInfo(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo);
 
     ResultModel<Boolean> addEventInfo(EventInfo entity);
 

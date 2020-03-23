@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageResultModel<T> {
+public class PageList<T> {
 
     private Long total;
 
