@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.dictionary;
+package com.xunjer.linsen.common.dictionary;
 
 import io.swagger.models.auth.In;
 
@@ -9,7 +9,7 @@ import io.swagger.models.auth.In;
  */
 public class Dictionary {
 
-    public enum Module_Type{
+    public static enum Module_Type{
         Event(1,"事件模块"),
 
         Mood(2,"心情模块");
@@ -31,7 +31,7 @@ public class Dictionary {
     }
 
 
-    public enum Plan_Status{
+    public static enum Plan_Status{
         Start(0,"进行中"),
 
         Runing(1,"已完成"),

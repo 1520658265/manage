@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.model;
+package com.xunjer.linsen.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

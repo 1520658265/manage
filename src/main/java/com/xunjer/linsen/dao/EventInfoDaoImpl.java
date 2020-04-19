@@ -1,10 +1,11 @@
 package com.xunjer.linsen.dao;
 
-import com.xunjer.linsen.common.config.config.BaseDao.AbstractBaseDao;
-import com.xunjer.linsen.common.config.config.BaseDao.BaseDao;
-import com.xunjer.linsen.common.config.model.PageInfo;
-import com.xunjer.linsen.common.config.model.PageList;
-import com.xunjer.linsen.model.EventInfo;
+import com.xunjer.linsen.common.PageStr;
+import com.xunjer.linsen.common.config.BaseDao.AbstractBaseDao;
+import com.xunjer.linsen.common.model.PageInfo;
+import com.xunjer.linsen.common.model.PageList;
+import com.xunjer.linsen.model.dto.EventDetailInfoDTO;
+import com.xunjer.linsen.model.entity.EventInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,10 +25,10 @@ import java.util.List;
 public class EventInfoDaoImpl extends AbstractBaseDao<EventInfo> {
 
     @Autowired
-    @Qualifier("jdbc_param_picture_book")
+    @Qualifier("jdbc_param_linsen")
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public PageList<EventInfo> select(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo){
+    public PageList<EventDetailInfoDTO> select(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo){
         String select = " select * from event_info";
         String countSql = " select count(1) from event_info";
         String whereStr = " where 1=1";
@@ -55,8 +56,10 @@ public class EventInfoDaoImpl extends AbstractBaseDao<EventInfo> {
         }
         countSql += whereStr;
         Long total = jdbcTemplate.queryForObject(countSql,params,Long.class);
-        List<EventInfo> list = jdbcTemplate.query(select,params,new BeanPropertyRowMapper<>(EventInfo.class));
-        PageList<EventInfo> result = new PageList<>();
+        select += whereStr;
+        PageStr.getPageStr(params,pageInfo);
+        List<EventDetailInfoDTO> list = jdbcTemplate.query(select,params,new BeanPropertyRowMapper<>(EventDetailInfoDTO.class));
+        PageList<EventDetailInfoDTO> result = new PageList<>();
         result.setTotal(total);
         result.setList(list);
         return result;

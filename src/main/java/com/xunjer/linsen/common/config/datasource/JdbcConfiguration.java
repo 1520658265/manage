@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.config.datasource;
+package com.xunjer.linsen.common.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ public class JdbcConfiguration {
     /**
      * 简单SQL查询
      */
-    @Bean(name = "jdbc_picture_book")
+    @Bean(name = "jdbc_linsen")
     public JdbcTemplate jdbc_picture_book(@Qualifier("primaryDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
@@ -28,7 +28,7 @@ public class JdbcConfiguration {
     /**
      * 参数化SQL查询【防QL注入】
      */
-    @Bean(name = "jdbc_param_picture_book")
+    @Bean(name = "jdbc_param_linsen")
     public NamedParameterJdbcTemplate jdbc_param_picture_book(@Qualifier("primaryDataSource") DataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);
     }
@@ -36,7 +36,7 @@ public class JdbcConfiguration {
     /**
      * 数据库事务
      */
-    @Bean(name = "jdbc_transaction_picture_book")
+    @Bean(name = "jdbc_transaction_linsen")
     public DataSourceTransactionManager jdbc_transaction_picture_book(@Qualifier("primaryDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

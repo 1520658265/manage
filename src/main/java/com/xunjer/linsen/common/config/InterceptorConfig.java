@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.config;
+package com.xunjer.linsen.common.config;
 
 /**
  * @author linsen

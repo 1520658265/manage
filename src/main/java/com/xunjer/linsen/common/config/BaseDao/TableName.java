@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.config.BaseDao;
+package com.xunjer.linsen.common.config.BaseDao;
 
 import java.lang.annotation.*;
 

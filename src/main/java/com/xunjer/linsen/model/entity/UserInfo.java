@@ -1,13 +1,11 @@
-package com.xunjer.linsen.model;
+package com.xunjer.linsen.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.xunjer.linsen.common.config.config.BaseDao.FieldName;
-import com.xunjer.linsen.common.config.config.BaseDao.TableName;
-import io.swagger.annotations.ApiOperation;
+import com.xunjer.linsen.common.config.BaseDao.FieldName;
+import com.xunjer.linsen.common.config.BaseDao.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 
 import java.util.Date;
 

@@ -1,14 +1,12 @@
-package com.xunjer.linsen.common.config.config.BaseDao;
+package com.xunjer.linsen.common.config.BaseDao;
 
 import lombok.Data;
-import org.apache.tomcat.jni.Error;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;

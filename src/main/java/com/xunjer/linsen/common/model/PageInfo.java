@@ -1,22 +1,22 @@
-package com.xunjer.linsen.common.config.model;
+package com.xunjer.linsen.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @author linsen
- * @date 2020/3/17 20:08
+ * @date 2020/3/17 20:06
  * @tips 明日复明日 明日何其多
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageList<T> {
+public class PageInfo {
 
-    private Long total;
+    private Integer page;
 
-    private List<T> list;
+    private Integer rows;
+
+    private Integer total;
 }

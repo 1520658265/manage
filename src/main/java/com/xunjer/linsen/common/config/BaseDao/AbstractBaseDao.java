@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.config.BaseDao;
+package com.xunjer.linsen.common.config.BaseDao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

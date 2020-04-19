@@ -1,4 +1,4 @@
-package com.xunjer.linsen.common.config.config.datasource;
+package com.xunjer.linsen.common.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;

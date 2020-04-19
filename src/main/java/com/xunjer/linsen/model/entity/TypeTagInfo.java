@@ -1,7 +1,7 @@
-package com.xunjer.linsen.model;
+package com.xunjer.linsen.model.entity;
 
-import com.xunjer.linsen.common.config.config.BaseDao.FieldName;
-import com.xunjer.linsen.common.config.config.BaseDao.TableName;
+import com.xunjer.linsen.common.config.BaseDao.FieldName;
+import com.xunjer.linsen.common.config.BaseDao.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

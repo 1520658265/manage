@@ -1,9 +1,10 @@
 package com.xunjer.linsen.service;
 
-import com.xunjer.linsen.common.config.model.PageInfo;
-import com.xunjer.linsen.common.config.model.PageList;
-import com.xunjer.linsen.common.config.model.ResultModel;
-import com.xunjer.linsen.model.EventInfo;
+import com.xunjer.linsen.common.model.PageInfo;
+import com.xunjer.linsen.common.model.PageList;
+import com.xunjer.linsen.common.model.ResultModel;
+import com.xunjer.linsen.model.dto.EventDetailInfoDTO;
+import com.xunjer.linsen.model.entity.EventInfo;
 
 /**
  * @author linsen
@@ -12,9 +13,11 @@ import com.xunjer.linsen.model.EventInfo;
  */
 public interface IEventInfoService {
 
-    ResultModel<PageList<EventInfo>> findEventInfo(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo);
+    ResultModel<PageList<EventDetailInfoDTO>> findEventInfo(Integer tagId, String title, String beginDate, String endDate, Integer owner, Boolean encryption, PageInfo pageInfo);
 
     ResultModel<Boolean> addEventInfo(EventInfo entity);
 
     ResultModel<Boolean> deleteEventInfo(Integer eventId);
+
+    ResultModel<Boolean> editEventInfo(EventInfo entity);
 }
